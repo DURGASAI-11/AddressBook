@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      .makeItMid {
+        width: 97vw;
+        height: 99vh;
+        justify-items: center;
+        margin-left: 10px;
+      }
+      .contact-list-wrapper {
+        width: 100%;
+        height: 97vh;
+        background-color: white;
+        box-shadow: 5px 5px 15px #b8c6d9, -5px -5px 1px #ffffff;
+      }
+      .navigate {
+        background-color: rgb(120, 208, 120);
+        padding: 10px;
+        font-family: "Poppins", sans-serif;
+        font-weight: bolder;
+        box-shadow: 5px 5px 15px #b8c6d9, -5px -5px 1px #ffffff;
+      }
+      .navigate ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 5px;
+        margin: 5px;
+        color: white;
+      }
+      .navigate ul .company li::first-letter {
+        font-size: 30px;
+      }
+      .navigate ul .contacts {
+        width: 300px;
+        display: flex;
+        justify-content: space-around;
+      }
+      .navigate ul .contacts button {
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+        padding: 12px;
+        border-radius: 5px;
+        font-size: 15px;
+      }
+
+      .navigate ul .contacts button a {
+        text-decoration: none;
+        color: white;
+      }
+      .navigate ul .contacts button a:hover {
+        color: #f9955b;
+        transition: all ease 0.5s;
+      }
+      .list {
+        width: 100%;
+        height: 70vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .contacts-list-col {
+        margin-top: 5%;
+        min-width: 30%;
+        height: 65vh;
+        background-color: white;
+        overflow-y: scroll;
+        border-radius: 5px;
+        box-shadow: 5px 5px 15px #b8c6d9, -5px -5px 1px #ffffff;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      form {
+        font-family: "Poppins", sans-serif;
+        font-weight: 900;
+      }
+      .contacts-list-col ul li {
+        width: 90%;
+        height: max-content;
+        padding: 8px 5px 8px 5px;
+        background-color: white;
+        margin-bottom: 9px;
+        border-radius: 5px;
+        font-family: "Poppins", sans-serif;
+        font-weight: bolder;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid rgb(120, 208, 120);
+        box-shadow: 5px 5px 15px #b8c6d9, -5px -5px 1px #ffffff;
+      }
+      .contacts-list-col ul li .trash {
+        cursor: pointer;
+      }
+      .contacts-list-col h1 {
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+        font-weight: bolder;
+        position: sticky;
+        top: 0%;
+        background-color: rgb(120, 208, 120);
+        padding-bottom: 5px;
+        color: white;
+      }
+
+      .sidebside {
+        display: flex;
+      }
+      .sidebside p {
+        margin-left: 15px;
+      }
+      .trash1 {
+        cursor: pointer;
+      }
+      .trash1 a {
+        text-decoration: none;
+      }
+      select,
+      select option {
+        font-family: "Poppins", sans-serif;
+        font-weight: 900;
+        padding: 3px;
+      }
+      .serFil {
+        background-color: white;
+        border: 1px solid rgb(120, 208, 120);
+        color: #f9955b;
+        padding: 3px;
+        border-radius: 4px;
+      }
+      input {
+        padding: 5px;
+        border-radius: 4px;
+        border: 1px solid rgb(120, 208, 120);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="makeItMid">
+      <section class="contact-list-wrapper">
+        <nav class="navigate">
+          <ul type="none">
+            <div class="company">
+              <li>AddressBook</li>
+            </div>
+            <div class="contacts">
+              <li>
+                <button><a href="/">Save Contact</a></button>
+              </li>
+            </div>
+          </ul>
+        </nav>
+
+        <div class="list">
+          <div class="contacts-list-col">
+            <h1>
+              Phone Book
+              <form action="">
+                <input
+                  type="text"
+                  name="q"
+                  placeholder="Search contacts"
+                  id="highLight"
+                />
+                <button class="serFil" type="submit">Search</button>
+              </form>
+              <form action="">
+                <select name="filterOption">
+                  <option value="All Contacts">All Contacts</option>
+                  <option value="friend">Friend</option>
+                  <option value="family">Family</option>
+                  <option value="work">Work</option>
+                </select>
+                <button class="serFil" type="submit">Filter</button>
+              </form>
+            </h1>
+
+            <ul type="none">
+              <%contacts.forEach(contact=>{%>
+              <li
+                title="Phone:<%=contact.phone%>, Address: <%=contact.address%>"
+              >
+                <p><%=contact.name%></p>
+                <div class="sidebside">
+                  <p class="trash1" data-contact-id="<%=contact._id%>">
+                    <a href="contactList/<%=contact._id%>">✎</a>
+                  </p>
+                  <p class="trash" data-contact-id="<%=contact._id%>">🪣</p>
+                </div>
+              </li>
+              <% })%>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script type="module" src="/contactListPage.js"></script>
+  </body>
+</html>

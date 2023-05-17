@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      section {
+        box-shadow: 5px 5px 15px #b8c6d9, -5px -5px 1px #ffffff;
+        width: 98%;
+        height: 95vh;
+      }
+      .exactCenter {
+        width: 100%;
+        height: 99vh;
+        justify-items: center;
+        align-items: center;
+        display: grid;
+      }
+      body {
+        background-color: white;
+        font-family: "Poppins", sans-serif;
+        font-weight: bolder;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .specific-address {
+        width: 100%;
+        height: 100vh;
+      }
+      .navigate {
+        background-color: rgb(120, 208, 120);
+        padding: 10px;
+        margin: 8px 8px 8px 8px;
+        font-family: "Poppins", sans-serif;
+        box-shadow: 2px 2px 10px #b8c6d9, -2px -2px 10px #ffffff;
+        border-radius: 5px;
+      }
+      .navigate ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 5px;
+        margin: 5px;
+      }
+      .navigate ul .company li {
+        color: white;
+      }
+      .navigate ul .company li::first-letter {
+        font-size: 30px;
+        text-shadow: 2px 2px silver;
+        color: white;
+      }
+      .navigate ul .contacts {
+        width: 300px;
+        display: flex;
+        justify-content: space-around;
+      }
+      .navigate ul .contacts button {
+        background-color: transparent;
+        padding: 12px;
+        border-radius: 5px;
+      }
+      .navigate ul .contacts button a {
+        text-decoration: none;
+        color: white;
+      }
+      .navigate ul .contacts button a:hover {
+        color: #f9955b;
+        transition: all ease 0.5s;
+      }
+      .contacts li button {
+        border: 1px solid white;
+      }
+
+      .selectedCon-wrapper {
+        width: 100%;
+        height: 70vh;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+      }
+      .specific {
+        min-width: 30vw;
+        min-height: 60vh;
+        background-color: white;
+        box-shadow: 5px 5px 15px #b8c6d9, -5px -5px 15px #ffffff;
+        border-radius: 6px;
+        font-family: "Poppins", sans-serif;
+      }
+      .specific h1 {
+        text-decoration: underline;
+        background-color: rgb(120, 208, 120);
+      }
+      .selectedCon-wrapper .specific form {
+        display: grid;
+        justify-content: center;
+        max-width: 100%;
+        padding: 5px;
+      }
+      form div {
+        padding: 3px;
+      }
+      form input,
+      textarea {
+        min-width: 100%;
+        border-radius: 4px;
+        padding: 5px;
+        border: 1px solid rgb(120, 208, 120);
+        font-family: "Poppins", sans-serif;
+        font-weight: bolder;
+      }
+      form button {
+        cursor: pointer;
+        padding: 3px;
+      }
+      #updateForm {
+        background-color: white;
+        color: rgb(120, 208, 120);
+        border: 1px solid rgb(120, 208, 120);
+      }
+      #updateForm:hover {
+        background-color: rgb(120, 208, 120);
+        color: white;
+        transition: all ease 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="exactCenter">
+      <section>
+        <div class="specific-address">
+          <nav class="navigate">
+            <ul type="none">
+              <div class="company">
+                <li>AddressBook</li>
+              </div>
+              <div class="contacts">
+                <li>
+                  <button><a href="/">Save Contact</a></button>
+                </li>
+                <li>
+                  <button>
+                    <a href="/contactList">View Contacts</a>
+                  </button>
+                </li>
+              </div>
+            </ul>
+          </nav>
+          <div class="selectedCon-wrapper">
+            <div class="specific">
+              <h1 style="text-align: center"><%=contacts.name%> Details</h1>
+              <form action="">
+                <br />
+                <div>
+                  <label for="">Name</label><br />
+                  <input
+                    data-contact-id="<%=contacts._id%>"
+                    id="name1"
+                    type="text"
+                    value="<%=contacts.name%>"
+                  />
+                </div>
+                <div>
+                  <label for="">Phone Number</label><br />
+                  <input
+                    id="phone1"
+                    type="number"
+                    value="<%=contacts.phone%>"
+                  />
+                </div>
+                <div>
+                  <label for="">Address</label><br />
+                  <textarea id="address1" name="" id="" cols="30" rows="2">
+<%=contacts.address%></textarea
+                  >
+                </div>
+
+                <div>
+                  <select name="" id="selectRelation">
+                    <% if (contacts.relation === "friend") { %>
+                    <option value="friend" selected>friend</option>
+                    <% } else { %>
+                    <option value="friend">friend</option>
+                    <% } %> <% if (contacts.relation === "family") { %>
+                    <option value="family" selected>family</option>
+                    <% } else { %>
+                    <option value="family">family</option>
+                    <% } %> <% if (contacts.relation === "work") { %>
+                    <option value="work" selected>work</option>
+                    <% } else { %>
+                    <option value="work">work</option>
+                    <% } %>
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  id="updateForm"
+                  data-contact-ids="<%=contacts._id%>"
+                >
+                  Edit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/specificContact.js"></script>
+  </body>
+</html>
